@@ -8,7 +8,6 @@ const util = require('util');
 
 // Permissions for the new objects
 // Key MUST match the top level folder
-// Format: <owner account name> - <Canonical ID> - <sub account name> - <canonical ID>
 // This will give owner full permission & sub account read only permission
 
 // Main Loop
@@ -27,24 +26,12 @@ exports.handler = function(event, context, callback) {
     }
     else // Its an object put
     {
-        // Get the source bucket from the S3 event
-        //var srcBucket = event.Records[0].s3.bucket.name;
-
-        // Object key may have spaces or unicode non-ASCII characters, decode it
-        //var srcKey = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));  
-
-        // Gets the top level folder, which is the key for the permissions array   
-        
-        var folderID = srcKey.split("/")[0];
-        
         var sourcekeyout = 'Source key name is ' + srcKey;
         var sourcebucketout = 'Source bucket name is ' + srcBucket;
-        var sourcefolderidout = 'Source folderid name is ' + folderID;
         
 
         console.log(sourcekeyout);
         console.log(sourcebucketout);
-        console.log(sourcefolderidout);
         
         
         // Define the object permissions, using the permissions array
